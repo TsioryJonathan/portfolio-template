@@ -1,12 +1,14 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Linkedin, Github, Twitter, Download } from "lucide-react";
+import { ArrowDown, Download } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { assets } from "../../public/Images/assets";
 import { BackgroundBeams } from "./ui/background-beams";
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { socialMediaLinks } from "@/data/socialMedia";
 
 const typingTexts = [
   "Full Stack Developer",
@@ -48,9 +50,10 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col md:flex-row items-center justify-center py-20 px-6 md:px-16  text-white overflow-hidden"
+      className="relative min-h-screen flex flex-col md:flex-row items-center justify-center py-10 px-6 md:px-16  text-white overflow-hidden"
       aria-label="Hero section introducing Jonathan"
     >
+      {/* Bg beams */}
       <BackgroundBeams className="absolute inset-0 -z-10 opacity-30" />
 
       <motion.div
@@ -142,56 +145,16 @@ export default function Hero() {
           }}
           aria-label="Social media links"
         >
-          <a
-            href="https://www.linkedin.com/in/jonathan"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn Profile"
-            className="hover:text-purple-400 transition-colors"
-          >
-            <Linkedin size={28} />
-          </a>
-          <a
-            href="https://github.com/jonathan"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub Profile"
-            className="hover:text-purple-400 transition-colors"
-          >
-            <Github size={28} />
-          </a>
-          <a
-            href="https://twitter.com/jonathan"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Twitter Profile"
-            className="hover:text-purple-400 transition-colors"
-          >
-            <Twitter size={28} />
-          </a>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.8,
-            delay: 1.4,
-            repeat: Number.POSITIVE_INFINITY,
-            repeatType: "reverse",
-            repeatDelay: 0.2,
-          }}
-        >
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={scrollToNext}
-            aria-label="Scroll down to about section"
-            className="animate-bounce mt-12 text-purple-400 hover:text-purple-600"
-          >
-            <ArrowDown className="h-7 w-7" />
-            <span className="sr-only">Scroll Down</span>
-          </Button>
+          {socialMediaLinks.map((link, i) => (
+            <Link
+              href={link.href}
+              className="hover:text-primary transition-colors"
+              key={i}
+            >
+              <link.icon className="w-8 h-8" />
+              <span className="sr-only">{link.label}</span>
+            </Link>
+          ))}
         </motion.div>
       </motion.div>
 
@@ -207,6 +170,31 @@ export default function Hero() {
           className="rounded-full border-4 border-purple-600 shadow-xl object-cover w-100 h-100"
           priority={true}
         />
+      </motion.div>
+
+      {/* Arrow down */}
+      <motion.div
+        initial={{ opacity: 0.5, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.8,
+          delay: 1.4,
+          repeat: Number.POSITIVE_INFINITY,
+          repeatType: "reverse",
+          repeatDelay: 0.2,
+        }}
+        className="absolute bottom-10"
+      >
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={scrollToNext}
+          aria-label="Scroll down to about section"
+          className="animate-bounce mt-12 text-purple-400 hover:text-purple-600"
+        >
+          <ArrowDown className="h-7 w-7" />
+          <span className="sr-only">Scroll Down</span>
+        </Button>
       </motion.div>
     </section>
   );
