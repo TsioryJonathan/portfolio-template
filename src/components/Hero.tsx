@@ -50,7 +50,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col md:flex-row items-center justify-center py-10 px-6 md:px-16  text-white overflow-hidden"
+      className="relative min-h-screen flex flex-col md:flex-row items-center justify-center py-10 px-6 md:px-16  text-text overflow-hidden"
       aria-label="Hero section introducing Jonathan"
     >
       {/* Bg beams */}
@@ -63,7 +63,7 @@ export default function Hero() {
         transition={{ duration: 0.8 }}
       >
         <motion.h1
-          className="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-3 leading-tight tracking-tight"
+          className="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-3 leading-tight tracking-tight text-text"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -83,7 +83,7 @@ export default function Hero() {
         </motion.h2>
 
         <motion.p
-          className="text-lg sm:text-xl max-w-xl mb-12 text-gray-300"
+          className="text-lg sm:text-xl max-w-xl mb-12 text-text/[0.2]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -148,7 +148,7 @@ export default function Hero() {
           {socialMediaLinks.map((link, i) => (
             <Link
               href={link.href}
-              className="hover:text-primary transition-colors"
+              className="hover:text-primary transition-colors text-text"
               key={i}
             >
               <link.icon className="w-8 h-8" />
