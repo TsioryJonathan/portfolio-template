@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import { Quicksand } from "next/font/google";
+import { Raleway } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
-const quicksand = Quicksand({
+const raleway = Raleway({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-quicksand",
+  variable: "--font-raleway",
 });
 
 export const metadata: Metadata = {
@@ -24,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${quicksand.className} min-h-screen min-w-screen overflow-x-hidden`}
+        className={`${raleway.className} min-h-screen min-w-screen overflow-x-hidden`}
       >
         <ThemeProvider
           attribute="class"

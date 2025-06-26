@@ -57,13 +57,13 @@ export default function Hero() {
       <BackgroundBeams className="absolute inset-0 -z-10 opacity-30" />
 
       <motion.div
-        className="text-center md:text-left md:w-1/2 flex flex-col items-center md:items-start justify-center pt-12 md:pt-20 px-4 md:px-0"
+        className="text-center md:text-left md:w-1/2 flex flex-col items-center md:items-start justify-center pt-12 md:pt-20 px-4 md:px-0 min-h-screen"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
         <motion.h1
-          className="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-3 leading-tight tracking-tight text-text"
+          className="text-5xl sm:text-6xl md:text-7xl !font-bold mb-3 leading-tight tracking-tight text-text heading"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -89,11 +89,12 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           I build exceptional and accessible digital experiences for the web,
-          crafting elegant solutions with a passion for clean, efficient code.
+          crafting elegant solutions with Link passion for clean, efficient
+          code.
         </motion.p>
 
         <motion.div
-          className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-5 mb-16 w-full max-w-md"
+          className="flex flex-row items-center justify-center sm:justify-start gap-5 mb-16 w-full max-w-md"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
@@ -103,9 +104,9 @@ export default function Hero() {
             asChild
             className="bg-gradient-to-r from-purple-500 via-pink-500 to-violet-600 hover:scale-105 focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-pink-500 transition-transform"
           >
-            <a href="#projects" aria-label="View my projects">
+            <Link href="#projects" aria-label="View my projects">
               View My Work
-            </a>
+            </Link>
           </Button>
           <Button
             size="lg"
@@ -113,9 +114,9 @@ export default function Hero() {
             asChild
             className="hover:bg-purple-600 hover:text-white transition-colors focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-purple-600"
           >
-            <a href="#contact" aria-label="Contact me">
+            <Link href="#contact" aria-label="Contact me">
               Contact Me
-            </a>
+            </Link>
           </Button>
           <Button
             size="lg"
@@ -123,7 +124,7 @@ export default function Hero() {
             asChild
             className="flex items-center gap-2 border-pink-500 text-pink-400 hover:bg-pink-600 hover:text-white transition-colors focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-pink-500"
           >
-            <a
+            <Link
               href="/Jonathan_CV.pdf"
               target="_blank"
               rel="noopener noreferrer"
@@ -131,7 +132,7 @@ export default function Hero() {
               download
             >
               <Download size={20} /> Download CV
-            </a>
+            </Link>
           </Button>
         </motion.div>
 
