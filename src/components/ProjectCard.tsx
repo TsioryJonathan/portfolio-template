@@ -7,7 +7,7 @@ import { ArrowBigDownIcon } from "lucide-react";
 import { assets } from "../../public/Images/assets";
 
 interface ProjectCardProps {
-  item: Project;
+  item: Project;  
   className?: string;
 }
 
@@ -18,7 +18,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ item }) => {
       key={item.title}
     >
       <PinContainer title={item.title} href={item.link}>
-        <div className="relative flex items-center justify-center sm:w-96 w-[80vw] overflow-hidden h-[20vh] lg:h-[30vh] mb-10">
+        <div className="relative flex items-center justify-center md:w-96 w-[60vw] overflow-hidden h-[30vh] lg:h-[30vh] mb-10 ">
           <div
             className="relative w-full h-full overflow-hidden lg:rounded-3xl"
             style={{ backgroundColor: "#13162D" }}

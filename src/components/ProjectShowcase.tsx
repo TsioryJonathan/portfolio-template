@@ -12,7 +12,7 @@ const ProjectShowcase = () => {
         A small selection of{" "}
         <span className="text-purple">recent projects</span>
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 items-center mx-50">
+      <div className="grid grid-cols-1 lg:grid-cols-2 items-center mx-30 md:mx-10">
         {projects.map((item) => (
           <ProjectCard item={item} key={item.title} />
         ))}
