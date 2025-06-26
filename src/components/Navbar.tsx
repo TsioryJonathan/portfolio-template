@@ -13,6 +13,7 @@ import { assets } from "../../public/Images/assets";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isActive, setIsActive] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,10 +26,10 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 w-full z-99 transition-all duration-300 border-b",
+        "fixed top-5 left-1/2 -translate-x-1/2 w-[70vw] z-99 transition-all duration-300 border rounded-lg",
         scrolled
-          ? "bg-background/80 backdrop-blur-md shadow-sm"
-          : "bg-transparent"
+          ? "bg-gray-500/10 backdrop-blur-md shadow-sm"
+          : "bg-gray-800/[0.2]"
       )}
     >
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -46,7 +47,10 @@ export default function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className="text-sm font-medium hover:text-primary transition-colors"
+              className={`text-sm font-medium hover:text-text/10 transition-colors ${
+                link.href === isActive ? "border-b border-foreground" : ""
+              }`}
+              onClick={() => setIsActive(link.href)}
             >
               {link.label}
             </Link>
@@ -80,7 +84,7 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium hover:text-primary transition-colors py-2"
+                className="text-sm font-medium transition-colors py-2"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
