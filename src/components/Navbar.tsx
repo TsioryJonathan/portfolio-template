@@ -12,24 +12,32 @@ import { assets } from "../../public/Images/assets";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [isActive, setIsActive] = useState("");
+  const [isScrolling, setIsScrolling] = useState(false);
+  const [activeLink, setActiveLink] = useState("");
 
   useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
+      setIsScrolling(true);
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setIsScrolling(false);
+      }, 50);
     };
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
     <header
       className={cn(
         "fixed top-5 left-1/2 -translate-x-1/2 w-[70vw] z-99 transition-all duration-300 border-border rounded-lg",
-        scrolled
-          ? "bg-gray-500/10 backdrop-blur-md shadow-sm"
-          : "bg-gray-800/[0.2]"
+        isScrolling
+          ? "bg-background/10 backdrop-blur-md shadow-sm"
+          : "bg-primary/70 shadow-none"
       )}
     >
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -47,10 +55,11 @@ export default function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className={`text-sm font-medium hover:text-text/10 transition-colors ${
-                link.href === isActive ? "border-b border-foreground" : ""
-              }`}
-              onClick={() => setIsActive(link.href)}
+              className={cn(
+                "text-sm font-medium hover:text-text/10 transition-colors",
+                link.href === activeLink && "border-b-2 border-violet-800"
+              )}
+              onClick={() => setActiveLink(link.href)}
             >
               {link.label}
             </Link>
@@ -61,7 +70,7 @@ export default function Navbar() {
           {socialMediaLinks.map((link, i) => (
             <Link
               href={link.href}
-              className="hover:text-primary transition-colors"
+              className="hover:text-violet-400 transition-colors"
               key={i}
             >
               <link.icon className="w-5 h-5" />
@@ -78,19 +87,22 @@ export default function Navbar() {
 
       {/* Mobile Navigation Menu */}
       {isOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-md">
-          <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
+        <div className="md:hidden bg-primary/70 backdrop-blur-md rounded-bl-2xl rounded-br-2xl">
+          <div className="mx-auto px-4 py-4 flex flex-col space-y-4">
             {navlinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
                 className="text-sm font-medium transition-colors py-2"
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false);
+                  setActiveLink(link.href);
+                }}
               >
                 {link.label}
               </Link>
             ))}
-            <Button className="w-full cursor-pointer">
+            <Button className="w-full cursor-pointer bg-primary hover:bg-primary/90 text-white font-semibold flex items-center justify-center gap-2">
               <Download />
               Download my resume
             </Button>

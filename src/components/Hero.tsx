@@ -1,14 +1,15 @@
 "use client";
 
+import React, { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Download } from "lucide-react";
+import { ArrowDown, Download, PhoneCall } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { assets } from "../../public/Images/assets";
-import { BackgroundBeams } from "./ui/background-beams";
-import { useState, useEffect } from "react";
 import Link from "next/link";
+import { assets } from "../../public/Images/assets";
 import { socialMediaLinks } from "@/data/socialMedia";
+import { BackgroundBeams } from "./ui/background-beams";
+import { Badge } from "./ui/badge";
 
 const typingTexts = [
   "Full Stack Developer",
@@ -17,15 +18,15 @@ const typingTexts = [
   "Tech Blogger",
 ];
 
-export default function Hero() {
-  const scrollToNext = () => {
-    const nextSection = document.getElementById("about");
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+const skillBadges = [
+  "UI/UX Design",
+  "React.js",
+  "TypeScript",
+  "TailwindCSS",
+  "Accessibility",
+];
 
-  // Typing effect state
+export default function Hero() {
   const [displayedText, setDisplayedText] = useState("");
   const [textIndex, setTextIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
@@ -37,166 +38,162 @@ export default function Hero() {
         setCharIndex((prev) => prev + 1);
       }, 100);
       return () => clearTimeout(timeout);
-    } else {
-      const timeout = setTimeout(() => {
-        setDisplayedText("");
-        setCharIndex(0);
-        setTextIndex((prev) => (prev + 1) % typingTexts.length);
-      }, 2000);
-      return () => clearTimeout(timeout);
     }
+    const timeout = setTimeout(() => {
+      setDisplayedText("");
+      setCharIndex(0);
+      setTextIndex((prev) => (prev + 1) % typingTexts.length);
+    }, 2000);
+    return () => clearTimeout(timeout);
   }, [charIndex, textIndex]);
+
+  const scrollToNext = useCallback(() => {
+    const next = document.getElementById("about");
+    next?.scrollIntoView({ behavior: "smooth" });
+  }, []);
 
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col md:flex-row items-center justify-center py-10 px-6 md:px-16  text-text overflow-hidden"
-      aria-label="Hero section introducing Jonathan"
+      className="relative w-full min-h-screen overflow-hidden "
     >
-      {/* Bg beams */}
-      <BackgroundBeams className="absolute inset-0 -z-10 opacity-30" />
-
-      <motion.div
-        className="text-center md:text-left md:w-1/2 flex flex-col items-center md:items-start justify-center pt-12 md:pt-20 px-4 md:px-0 min-h-screen"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <motion.h1
-          className="text-5xl sm:text-6xl md:text-7xl !font-bold mb-3 leading-tight tracking-tight text-text heading"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          Hi, I&apos;m{" "}
-          <span className="bg-gradient-to-r from-purple-400 via-fuchsia-500 to-violet-600 bg-clip-text text-transparent">
-            Jonathan
-          </span>
-        </motion.h1>
-
-        <motion.h2
-          className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 min-h-[48px] text-purple-400 tracking-wide"
-          aria-live="polite"
-        >
-          {displayedText}
-          <span className="blinking-cursor">|</span>
-        </motion.h2>
-
-        <motion.p
-          className="text-lg sm:text-xl max-w-xl mb-12 text-text/[0.2]"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          I build exceptional and accessible digital experiences for the web,
-          crafting elegant solutions with Link passion for clean, efficient
-          code.
-        </motion.p>
-
-        <motion.div
-          className="flex flex-row items-center justify-center sm:justify-start gap-5 mb-16 w-full max-w-md"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-        >
-          <Button
-            size="lg"
-            asChild
-            className="bg-gradient-to-r from-purple-500 via-pink-500 to-violet-600 hover:scale-105 focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-pink-500 transition-transform"
-          >
-            <Link href="#projects" aria-label="View my projects">
-              View My Work
-            </Link>
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            asChild
-            className="hover:bg-purple-600 hover:text-white transition-colors focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-purple-600"
-          >
-            <Link href="#contact" aria-label="Contact me">
-              Contact Me
-            </Link>
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            asChild
-            className="flex items-center gap-2 border-pink-500 text-pink-400 hover:bg-pink-600 hover:text-white transition-colors focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-pink-500"
-          >
-            <Link
-              href="/Jonathan_CV.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Download my CV"
-              download
-            >
-              <Download size={20} /> Download CV
-            </Link>
-          </Button>
-        </motion.div>
-
-        <motion.div
-          className="flex space-x-6 text-gray-400 hover:text-purple-400"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.8,
-            delay: 1.1,
-          }}
-          aria-label="Social media links"
-        >
-          {socialMediaLinks.map((link, i) => (
-            <Link
-              href={link.href}
-              className="hover:text-primary transition-colors text-text"
-              key={i}
-            >
-              <link.icon className="w-8 h-8" />
-              <span className="sr-only">{link.label}</span>
-            </Link>
-          ))}
-        </motion.div>
-      </motion.div>
-
-      <motion.div
-        className="md:w-1/2 flex items-center justify-center mt-12 md:mt-0"
-        initial={{ opacity: 0, x: 40, rotate: -5 }}
-        animate={{ opacity: 1, x: 0, rotate: 0 }}
-        transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-      >
+      {/* Background */}
+      <div className="absolute inset-0 -z-20">
         <Image
-          alt="Portrait of Jonathan"
-          src={assets.heroImg}
-          className="rounded-full border-4 border-purple-600 shadow-xl object-cover w-100 h-100"
+          src={assets.bgJpg}
+          alt="background"
+          className="w-full h-full object-cover"
+          fill
           priority={true}
         />
-      </motion.div>
+      </div>
+      <BackgroundBeams className="absolute inset-0 -z-10 opacity-40" />
 
-      {/* Arrow down */}
+      {/* Arrow */}
       <motion.div
-        initial={{ opacity: 0.5, y: 10 }}
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20"
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.8,
-          delay: 1.4,
-          repeat: Number.POSITIVE_INFINITY,
-          repeatType: "reverse",
-          repeatDelay: 0.2,
-        }}
-        className="absolute bottom-10"
+        transition={{ duration: 0.8, delay: 0.8 }}
       >
         <Button
           variant="ghost"
           size="icon"
           onClick={scrollToNext}
-          aria-label="Scroll down to about section"
-          className="animate-bounce mt-12 text-purple-400 hover:text-purple-600"
+          className="animate-bounce cursor-pointer"
         >
-          <ArrowDown className="h-7 w-7" />
-          <span className="sr-only">Scroll Down</span>
+          <ArrowDown className="w-8 h-8" />
         </Button>
       </motion.div>
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col md:flex-row items-center justify-center text-white px-10 md:px-30 mx-auto w-full md:h-screen md:gap-4">
+        <div className="w-full md:w-1/2 h-screen flex items-center justify-center pt-10">
+          <div className=" flex flex-col items-start justify-center pt-20">
+            <div className="flex flex-wrap gap-3 mb-6 justify-center md:justify-start">
+              {skillBadges.map((skill, idx) => (
+                <motion.div
+                  key={skill}
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2 + idx * 0.1 }}
+                >
+                  <Badge className="bg-white/10 text-white">{skill}</Badge>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.h1
+              className="text-5xl sm:text-6xl mb-4 leading-tight font-bold"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              Hello, <br /> I&apos;m{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
+                Jonathan
+              </span>
+            </motion.h1>
+            <motion.h2
+              className="text-2xl sm:text-3xl font-semibold mb-6 text-purple-300 h-[3rem]"
+              aria-live="polite"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              {displayedText}
+              <span className="inline-block animate-pulse">|</span>
+            </motion.h2>
+            <motion.p
+              className="text-lg sm:text-xl mb-8 text-white/80"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              Crafting intuitive, user-focused web applications with elegant,
+              efficient code and pixel-perfect design.
+            </motion.p>
+
+            <motion.div
+              className="flex flex-row gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              <Button
+                size="lg"
+                asChild
+                className="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 hover:scale-105 transition"
+              >
+                <Link
+                  href="/Jonathan_CV.pdf"
+                  target="_blank"
+                  rel="noopener"
+                  download
+                >
+                  <Download className="mr-2" /> Download CV
+                </Link>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                asChild
+                className="border-white text-white hover:bg-white/10"
+              >
+                <Link href="#contact">
+                  Contact Me
+                  <PhoneCall />
+                </Link>
+              </Button>
+            </motion.div>
+
+            <motion.div
+              className="flex items-center justify-center mt-8 space-x-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.0 }}
+            >
+              {socialMediaLinks.map((link, idx) => (
+                <Link
+                  key={idx}
+                  href={link.href}
+                  className="text-white/80 hover:text-white"
+                >
+                  <link.icon className="w-6 h-6" />
+                </Link>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-center md:w-1/2 w-full h-screen relative">
+          <Image
+            src={assets.programmer2}
+            alt="programmer"
+            className="h-[70%] w-full object-cover absolute top-[50%] -translate-y-1/2 opacity-90 rounded-2xl"
+          />
+        </div>
+      </div>
     </section>
   );
 }

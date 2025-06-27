@@ -4,6 +4,9 @@
 
 /* 1. Polices & bibliothèques */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap");
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -74,97 +77,101 @@ html {
 :root {
   --radius: 0.625rem;
 
-  --background:           #e0e7ff;
-  --foreground:           #0b0c2d;
+  --background: #e0e7ff;
+  --foreground: #0b0c2d;
 
-  --card:                 #ffffff;
-  --card-foreground:      #0b0c2d;
-  --popover:              #ffffff;
-  --popover-foreground:   #0b0c2d;
+  --card: #ffffff;
+  --card-foreground: #0b0c2d;
+  --popover: #ffffff;
+  --popover-foreground: #0b0c2d;
 
-  --primary:              #191970;
-  --primary-foreground:   #ffffff;
+  --primary: #191970;
+  --primary-foreground: #ffffff;
 
-  --secondary:            #6a5acd;
+  --secondary: #6a5acd;
   --secondary-foreground: #ffffff;
 
-  --accent:               #00bfff;
-  --accent-foreground:    #0b0c2d;
+  --accent: #00bfff;
+  --accent-foreground: #0b0c2d;
 
-  --destructive:          #ff4c4c;
-  --destructive-foreground:#ffffff;
+  --destructive: #ff4c4c;
+  --destructive-foreground: #ffffff;
 
-  --muted:                #4b4c6b;
-  --muted-foreground:     #cbd5e1;
+  --muted: #4b4c6b;
+  --muted-foreground: #cbd5e1;
 
-  --border:               #2a2b47;
-  --input:                #f8fafc;
-  --ring:                 #191970;
+  --border: #2a2b47;
+  --input: #f8fafc;
+  --ring: #191970;
 
-  --chart-1:              #191970;
-  --chart-2:              #6a5acd;
-  --chart-3:              #00bfff;
-  --chart-4:              #34aeeb;
-  --chart-5:              #ffb347;
+  --chart-1: #191970;
+  --chart-2: #6a5acd;
+  --chart-3: #00bfff;
+  --chart-4: #34aeeb;
+  --chart-5: #ffb347;
 
-  --sidebar:              #ffffff;
-  --sidebar-foreground:   #0b0c2d;
-  --sidebar-primary:      var(--primary);
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0b0c2d;
+  --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: var(--primary-foreground);
-  --sidebar-accent:       var(--accent);
+  --sidebar-accent: var(--accent);
   --sidebar-accent-foreground: var(--accent-foreground);
-  --sidebar-border:       #2a2b47;
-  --sidebar-ring:         var(--ring);
+  --sidebar-border: #2a2b47;
+  --sidebar-ring: var(--ring);
+
+  --font-poppins: "Poppins", sans-serif;
 }
 
 /* 6. Thème très sombre */
 .dark {
-  --background:           #010113;
-  --foreground:           #e0e7ff;
+  --background: #010113;
+  --foreground: #e0e7ff;
 
-  --card:                 #080811;
-  --card-foreground:      #e0e7ff;
-  --popover:              #0d0d1f;
-  --popover-foreground:   #e0e7ff;
+  --card: #080811;
+  --card-foreground: #e0e7ff;
+  --popover: #0d0d1f;
+  --popover-foreground: #e0e7ff;
 
-  --primary:              #0f0d23;
-  --primary-foreground:   #ffffff;
+  --primary: #0f0d23;
+  --primary-foreground: #ffffff;
 
-  --secondary:            #2e2f54;
+  --secondary: #2e2f54;
   --secondary-foreground: #ffffff;
 
-  --accent:               #0077aa;
-  --accent-foreground:    #ffffff;
+  --accent: #0077aa;
+  --accent-foreground: #ffffff;
 
-  --destructive:          #c72c2c;
-  --destructive-foreground:#ffffff;
+  --destructive: #c72c2c;
+  --destructive-foreground: #ffffff;
 
-  --muted:                #1a1b2e;
-  --muted-foreground:     #cbd5e1;
+  --muted: #1a1b2e;
+  --muted-foreground: #cbd5e1;
 
-  --border:               #0b0b18;
-  --input:                #080811;
-  --ring:                 #0077aa;
+  --border: #0b0b18;
+  --input: #080811;
+  --ring: #0077aa;
 
-  --chart-1:              #0f0d23;
-  --chart-2:              #2e2f54;
-  --chart-3:              #0077aa;
-  --chart-4:              #005f88;
-  --chart-5:              #9a5d00;
+  --chart-1: #0f0d23;
+  --chart-2: #2e2f54;
+  --chart-3: #0077aa;
+  --chart-4: #005f88;
+  --chart-5: #9a5d00;
 
-  --sidebar:              #0d0d1f;
-  --sidebar-foreground:   #e0e7ff;
-  --sidebar-primary:      var(--primary);
+  --sidebar: #0d0d1f;
+  --sidebar-foreground: #e0e7ff;
+  --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: var(--primary-foreground);
-  --sidebar-accent:       var(--accent);
+  --sidebar-accent: var(--accent);
   --sidebar-accent-foreground: var(--accent-foreground);
-  --sidebar-border:       #0b0b18;
-  --sidebar-ring:         var(--ring);
+  --sidebar-border: #0b0b18;
+  --sidebar-ring: var(--ring);
 }
 
 /* 7. Styles de base */
 @layer base {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     @apply border-border outline-ring/50;
   }
   body {
@@ -174,9 +181,6 @@ html {
 
 /* 8. Utilities personnalisées */
 @layer utilities {
-  .heading {
-    @apply font-[var(--font-poppins)] font-extrabold;
-  }
 }
 
 /* 9. Animation Spotlight */
@@ -189,4 +193,12 @@ html {
     opacity: 1;
     transform: translate(-50%, -40%) scale(1);
   }
+}
+
+.font-poppins {
+  font-family: var(--font-poppins);
+}
+
+.font-fira-code {
+  font-family: "Fira Code", monospace !important;
 }
