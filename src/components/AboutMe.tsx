@@ -36,13 +36,13 @@ export default function AboutMe() {
           initial={{ opacity: 0, x: 10 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="text-5xl font-bold"
+          className="text-5xl lg:text-6xl"
         >
           About Me
         </motion.h1>
         {/* Introduction */}
         <div className="space-y-4">
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="text-lg text-muted-foreground leading-relaxed px-20">
             I&apos;m Jonathan, a passionate full-stack developer who loves
             crafting beautiful, performant, and accessible web experiences. I
             thrive at the intersection of design and code, constantly learning
@@ -50,11 +50,11 @@ export default function AboutMe() {
           </p>
         </div>
 
-        <Separator />
+        <Separator className="mx-auto w-20 h-px bg-gradient-to-r from-[#3b82f6] via-[#EF4444] to-[#3b82f6]" />
 
         {/* Skills */}
         <div className="space-y-10">
-          <h3 className="text-5xl font-bold">Skills & Tools</h3>
+          <h3 className="text-5xl lg:text-6xl">Skills & Tools</h3>
           {/* Skills Icon */}
 
           <SkillsTab />

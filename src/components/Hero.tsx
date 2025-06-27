@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Download, PhoneCall } from "lucide-react";
 import { motion } from "framer-motion";
@@ -10,6 +10,7 @@ import { assets } from "../../public/Images/assets";
 import { socialMediaLinks } from "@/data/socialMedia";
 import { BackgroundBeams } from "./ui/background-beams";
 import { Badge } from "./ui/badge";
+import { FlipWords } from "./ui/flip-words";
 
 const typingTexts = [
   "Full Stack Developer",
@@ -27,26 +28,6 @@ const skillBadges = [
 ];
 
 export default function Hero() {
-  const [displayedText, setDisplayedText] = useState("");
-  const [textIndex, setTextIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-
-  useEffect(() => {
-    if (charIndex < typingTexts[textIndex].length) {
-      const timeout = setTimeout(() => {
-        setDisplayedText((prev) => prev + typingTexts[textIndex][charIndex]);
-        setCharIndex((prev) => prev + 1);
-      }, 100);
-      return () => clearTimeout(timeout);
-    }
-    const timeout = setTimeout(() => {
-      setDisplayedText("");
-      setCharIndex(0);
-      setTextIndex((prev) => (prev + 1) % typingTexts.length);
-    }, 2000);
-    return () => clearTimeout(timeout);
-  }, [charIndex, textIndex]);
-
   const scrollToNext = useCallback(() => {
     const next = document.getElementById("about");
     next?.scrollIntoView({ behavior: "smooth" });
@@ -109,7 +90,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              Hello, <br /> I&apos;m{" "}
+              Hello, I&apos;m{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
                 Jonathan
               </span>
@@ -121,8 +102,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              {displayedText}
-              <span className="inline-block animate-pulse">|</span>
+              <FlipWords words={typingTexts} />
             </motion.h2>
             <motion.p
               className="text-lg sm:text-xl mb-8 text-white/80"

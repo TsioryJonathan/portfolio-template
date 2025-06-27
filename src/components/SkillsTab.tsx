@@ -8,30 +8,32 @@ import { cn } from "@/lib/utils";
 function SkillsTab() {
   return (
     <Tabs defaultValue={"Favorite"}>
-      <TabsList
-        aria-label="Skills"
-        className="w-full flex justify-center gap-4 mb-6"
-      >
-        {skills.map(({ environment }) => (
-          <TabsTrigger
-            key={environment}
-            value={environment}
-            className={cn(
-              "relative px-4 py-2 text-lg font-medium text-muted-foreground transition-colors",
-              "cursor-pointer",
-              "before:absolute before:bottom-0 before:left-1/2 before:h-[2px] before:w-0",
-              "before:rounded-full before:bg-gradient-to-r before:from-purple-400 before:via-pink-500 before:to-indigo-500",
-              "before:transition-all before:duration-300",
-              "hover:text-foreground",
-              "data-[state=active]:text-foreground",
-              "data-[state=active]:before:left-0 data-[state=active]:before:w-full",
-              "border-none"
-            )}
-          >
-            {environment}
-          </TabsTrigger>
-        ))}
-      </TabsList>
+      <div className="flex items-center justify-center">
+        <TabsList
+          aria-label="Skills"
+          className="w-[60%] flex justify-center gap-4 mb-6"
+        >
+          {skills.map(({ environment }) => (
+            <TabsTrigger
+              key={environment}
+              value={environment}
+              className={cn(
+                "relative px-4 py-2 text-lg font-medium text-muted-foreground transition-colors",
+                "cursor-pointer",
+                "before:absolute before:bottom-0 before:left-1/2 before:h-[2px] before:w-0",
+                "before:rounded-full before:bg-gradient-to-r before:from-purple-400 before:via-pink-500 before:to-indigo-500",
+                "before:transition-all before:duration-300",
+                "hover:text-foreground",
+                "data-[state=active]:text-foreground",
+                "data-[state=active]:before:left-0 data-[state=active]:before:w-full",
+                "border-none"
+              )}
+            >
+              {environment}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </div>
       {skills.map(({ skills, environment }) => (
         <TabsContent value={environment} key={environment}>
           <div className="w-full h-full grid grid-cols-2 md:grid-cols-3 gap-30 mt-10">
