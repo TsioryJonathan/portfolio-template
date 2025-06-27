@@ -202,3 +202,7 @@ html {
 .font-fira-code {
   font-family: "Fira Code", monospace !important;
 }
+
+body, * {
+  cursor: none;
+}

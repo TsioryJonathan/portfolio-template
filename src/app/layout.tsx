@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import CustomCursor from "@/components/CustomCursor";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -31,6 +32,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          
+          <CustomCursor />
           <Navbar />
           {children}
           <div className="fixed bottom-3 left-3">

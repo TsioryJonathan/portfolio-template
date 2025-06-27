@@ -23,7 +23,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ item }) => {
             className="relative w-full h-full overflow-hidden lg:rounded-3xl"
             style={{ backgroundColor: "#13162D" }}
           >
-            <Image src={assets.bg} alt="bgimg" className="w-full h-full" />
+            <Image src={assets.bgPng} alt="bgimg" className="w-full h-full" />
           </div>
           <Image
             src={item.image}
