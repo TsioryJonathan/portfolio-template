@@ -186,13 +186,18 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="flex items-center justify-center md:w-1/2 w-full h-screen relative">
+        <motion.div
+          className="flex items-center justify-center md:w-1/2 w-full h-screen relative"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+        >
           <Image
             src={assets.programmer2}
             alt="programmer"
             className="h-[70%] w-full object-cover absolute top-[50%] -translate-y-1/2 opacity-90 rounded-2xl"
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
