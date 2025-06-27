@@ -3,15 +3,28 @@
 import { motion } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import { Spotlight } from "@/components/ui/spotlight";
-import { skills } from "@/data/skills";
+import SkillsTab from "@/components/SkillsTab";
 
 export default function AboutMe() {
   return (
     <section
-      id="about"
-      className="py-24 px-6 md:px-16 max-w-5xl mx-auto text-foreground"
+      className="
+    bg-gradient-to-b
+    from-[#0f0a1e]
+    via-[#0f0a1e]/80
+    to-transparent
+    py-24 px-6 md:px-16
+     mx-auto
+    text-foreground
+    relative
+    overflow-hidden
+  "
     >
-      <Spotlight className="mt-10" />
+      <Spotlight className="mt-10" fill="#3b82f6" />
+      <Spotlight fill="violet" />
+
+      {/* Background Circles */}
+
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -44,23 +57,7 @@ export default function AboutMe() {
           <h3 className="text-5xl font-bold">Skills & Tools</h3>
           {/* Skills Icon */}
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 space-y-20">
-            {skills.map((skill, i) => (
-              <motion.div
-                className="flex flex-col items-center gap-2"
-                key={skill.name}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.2, duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <skill.Icon className="w-20 h-20 hover:backdrop-blur-lg hover:scale-105 transition-all duration-150 ease-in-out" />
-                <span className="text-lg text-center mt-5 font-bold">
-                  {skill.name}
-                </span>
-              </motion.div>
-            ))}
-          </div>
+          <SkillsTab />
         </div>
       </motion.div>
     </section>

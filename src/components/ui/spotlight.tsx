@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import { cn } from "@/lib/utils";
+import { useInView } from "motion/react";
 
 type SpotlightProps = {
   className?: string;
@@ -7,12 +8,18 @@ type SpotlightProps = {
 };
 
 export const Spotlight = ({ className, fill }: SpotlightProps) => {
+  const ref = useRef<SVGSVGElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
     <svg
       className={cn(
-        "animate-spotlight pointer-events-none absolute z-[1]  h-[169%] w-[138%] lg:w-[84%] opacity-0",
+        `${
+          inView && "animate-spotlight"
+        } pointer-events-none absolute z-[1]  h-[90%] w-[138%] lg:w-[84%] opacity-0`,
         className
       )}
+      ref={ref}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 3787 2842"
       fill="none"
